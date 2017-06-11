@@ -23,7 +23,7 @@ class Perceptron():
 			for xi, yi in zip(X, y):
 				# Iterate through all input datasets to calculate error and update weight 
 				# zip(*iterators) API, aggragates elements from each iterables
-				update = self.eta * ( yi - self.labelZ(xi) )
+				update = self.eta * ( yi - self.predict(xi) )
 				self.weight_[1:] += update * xi
 				self.weight_[0] += update
 				error += int(update != 0.0)
@@ -38,7 +38,7 @@ class Perceptron():
 		# use np.dot API, numpy.dot(a, b), dot product of two arrays
 		return np.dot(X, self.weight_[1:]) + self.weight_[0]
 
-	def labelZ(self, X):
+	def predict(self, X):
 		# For each input labelZ based on YHat
 		# np.where API numpy.where(condition, x, y), condition can be arrayLike
 		# return x if condition is met, y elsewise
