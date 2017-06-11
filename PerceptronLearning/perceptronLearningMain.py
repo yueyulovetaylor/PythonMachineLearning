@@ -1,4 +1,7 @@
 from perceptronLearning import Perceptron
+import sys
+sys.path.append('../Utilities')
+import printDecisionRegion as printDR
 
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -28,9 +31,22 @@ plt.scatter(X[50: 100, 0], X[50: 100, 1], color = 'blue', marker = 'x', label = 
 plt.xlabel('sepal length')
 plt.ylabel('petal length')
 plt.legend(loc='upper left')
-print('\nPrint Initial dataset in two dimensions')
+print('\Plot Initial dataset in two dimensions')
 plt.show()
 
 # Use perceptron to train the data for classification
 ppn = Perceptron(eta = 0.1, n_iter = 10)
 ppn.fit(X, y)
+
+# Plot the errors
+print('Errors by the end of each iteration are')
+print(ppn.errors_)
+print('Plot error by iteration')
+plt.plot(range(1, len(ppn.errors_) + 1), ppn.errors_, marker = 'o')
+plt.xlabel('Epochs')
+plt.ylabel('Number of misclassification')
+plt.show()
+
+# Plot Decision Region
+printDR.printDecisionRegion()
+

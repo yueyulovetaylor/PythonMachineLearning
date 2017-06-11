@@ -16,21 +16,30 @@ class Perceptron():
 		self.weight_ = np.zeros(1 + X.shape[1]) 
 			# Weight has one more dimension than X, represention a constant offset 
 			# from the model
-		self.error = []
+		self.errors_ = []
 
-		for _ in range(self.n_iter):
+		for nCt in range(self.n_iter):
 			error = 0
-			for xi, yBar in zip(X, y):
+			for xi, yi in zip(X, y):
 				# Iterate through all input datasets to calculate error and update weight 
 				# zip(*iterators) API, aggragates elements from each iterables
+				update = self.eta * ( yi - self.labelZ(xi) )
+				self.weight_[1:] += update * xi
+				self.weight_[0] += update
+				error += int(update != 0.0)
+					# As long as an update is required, the prediction is incorrect
+					# int API construct an integer from an boolean
+			self.errors_.append(error)
+
+		return self
 
 	def calculateYHat(self, X):
 		# Calculate YHat with current weight
 		# use np.dot API, numpy.dot(a, b), dot product of two arrays
-		return np.dot(X, self.w_[1:]) + w[0]
+		return np.dot(X, self.weight_[1:]) + self.weight_[0]
 
 	def labelZ(self, X):
 		# For each input labelZ based on YHat
 		# np.where API numpy.where(condition, x, y), condition can be arrayLike
 		# return x if condition is met, y elsewise
-		return np.where(self.calculateYHat(X), 1, -1)
+		return np.where(self.calculateYHat(X) >= 0.0, 1, -1)
