@@ -1,5 +1,5 @@
 import sys
-sys.path.append('Utilities/')
+sys.path.append('../Utilities/')
 import readData as RD
 import printDecisionRegion as printDR
 import numpy as np

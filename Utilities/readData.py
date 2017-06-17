@@ -4,7 +4,7 @@ import numpy as np
 def readDataFromIris():
 	# Use pandas library to import all data into a framework and 
 	# tail the last five lines
-	df = pd.read_csv('Utilities/iris.data', header = None)
+	df = pd.read_csv('../Utilities/iris.data', header = None)
 
 	print('Tail last five rows of the dataset')
 	last5Samples = df.tail(5) 

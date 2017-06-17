@@ -1,6 +1,6 @@
 from perceptronLearning import Perceptron
 import sys
-sys.path.append('Utilities/')
+sys.path.append('../Utilities/')
 import printDecisionRegion as printDR
 import readData as RD
 
