@@ -40,4 +40,3 @@ plt.xlabel('sepal length [cm]')
 plt.ylabel('petal length [cm]')
 plt.legend(loc = 'upper left')
 plt.show()
-
