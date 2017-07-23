@@ -27,4 +27,5 @@ def sklearnReadIris():
 	X_test_std = sc.transform(X_test) 
 
 	return {'X_train_std': X_train_std, 'y_train': y_train, 
-	        'X_test_std': X_test_std, 'y_test': y_test}
+	        'X_test_std': X_test_std, 'y_test': y_test,
+	        'X_train': X_train, 'X_test': X_test}
