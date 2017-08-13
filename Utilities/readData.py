@@ -53,6 +53,8 @@ def readDataFromWine():
 	stdsc = StandardScaler()
 	X_train_std = stdsc.fit_transform(X_train),
 	X_test_std = stdsc.transform(X_test)
+	print('Train', X_train_std)
+	print('Test', X_test_std)
 
 	return {'X_train': X_train, 'y_train': y_train,
 			'X_test': X_test, 'y_test':y_test,
