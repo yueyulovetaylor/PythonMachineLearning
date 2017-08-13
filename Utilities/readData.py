@@ -57,4 +57,5 @@ def readDataFromWine():
 	return {'X_train': X_train, 'y_train': y_train,
 			'X_test': X_test, 'y_test':y_test,
 			'X_train_norm': X_train_norm, 'X_test_norm': X_test_norm,
-			'X_train_std': X_train_std, 'X_test_std': X_test_std}
+			'X_train_std': X_train_std, 'X_test_std': X_test_std,
+			'columns': df_wine.columns}
