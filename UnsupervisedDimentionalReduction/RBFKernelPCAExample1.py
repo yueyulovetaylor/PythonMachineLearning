@@ -96,3 +96,15 @@ plt.scatter(X_reproject, 0, color = 'green',
 plt.legend(scatterpoints = 1)
 plt.show()
 
+print('\n5. Sklearn PCA Application')
+from sklearn.decomposition import KernelPCA
+scikit_kpca = KernelPCA(n_components = 2, kernel = 'rbf', gamma = 15)
+X_skernpca = scikit_kpca.fit_transform(X)
+
+plt.scatter(X_skernpca[y == 0, 0], X_skernpca[y == 0, 1], 
+	        color = 'red', marker = '^', alpha = 0.5)
+plt.scatter(X_skernpca[y == 1, 0], X_skernpca[y == 1, 1], 
+	        color = 'blue', marker = 'o', alpha = 0.5)
+plt.xlabel('PC1')
+plt.ylabel('PC2')
+plt.show()
