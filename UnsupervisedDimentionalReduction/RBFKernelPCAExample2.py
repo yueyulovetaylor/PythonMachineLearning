@@ -1,15 +1,14 @@
-# Sample 1 RBF Kernel PCA using make_moons sample
+# Sample 2 RBF Kernel PCA using make_circles sample
 import sys
 sys.path.append('./')
-from sklearn.datasets import make_moons
+from sklearn.datasets import make_circles
 import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
 import numpy as np
 import RBFKernelPCAAPI as RBFAPI
 
-print('Kernel Trick -- Sample 1 RBF Kernel PCA using make_moons sample')
-print('1. Read make_moons data and plot the scatter')
-X, y = make_moons(n_samples = 100, random_state = 123)
+print('Kernel Trick -- Sample 1 RBF Kernel PCA using make_circles sample')
+X, y = make_circles(n_samples = 1000, random_state = 123, noise = 0.1, factor = 0.2)
 plt.scatter(X[y == 0, 0], X[y == 0, 1], 
 	        color = 'red', marker = '^', alpha = 0.5)
 plt.scatter(X[y == 1, 0], X[y == 1, 1], 
@@ -31,9 +30,9 @@ ax[0].set_xlabel('PC1')
 ax[0].set_ylabel('PC2')
 
 # Mapping only to PC1
-ax[1].scatter(X_spca[y == 0, 0], np.zeros((50, 1)) + 0.02,
+ax[1].scatter(X_spca[y == 0, 0], np.zeros((500, 1)) + 0.02,
 	          color = 'red', marker = '^', alpha = 0.5)
-ax[1].scatter(X_spca[y == 1, 0], np.zeros((50, 1)) - 0.02,
+ax[1].scatter(X_spca[y == 1, 0], np.zeros((500, 1)) - 0.02,
 	          color = 'blue', marker = 'o', alpha = 0.5)
 ax[1].set_ylim([-1, 1])
 ax[1].set_yticks([])
@@ -56,43 +55,12 @@ ax[0].set_xlabel('PC1')
 ax[0].set_ylabel('PC2')
 
 # Mapping only to PC1
-ax[1].scatter(X_kpca[y == 0, 0], np.zeros((50, 1)) + 0.02,
+ax[1].scatter(X_kpca[y == 0, 0], np.zeros((500, 1)) + 0.02,
 	          color = 'red', marker = '^', alpha = 0.5)
-ax[1].scatter(X_kpca[y == 1, 0], np.zeros((50, 1)) - 0.02,
+ax[1].scatter(X_kpca[y == 1, 0], np.zeros((500, 1)) - 0.02,
 	          color = 'blue', marker = 'o', alpha = 0.5)
 ax[1].set_ylim([-1, 1])
 ax[1].set_yticks([])
 ax[1].set_xlabel('PC1')
 
 plt.show()
-
-print('\n4. Call API II to collect eigenvalues and eigenvectors, projecting one sample points')
-alphas, lambdas = RBFAPI.rbf_kernel_pca_return_K_alpha(X, gamma = 15, n_components = 1)
-
-# Use the 25th sample in X as the one to do project 
-X_origin = X[25]
-X_project = alphas[25]
-
-# Create a throw-in API to use the distance function to project
-def project_x(x_origin, X, gamma, alphas, lambdas):
-	pair_dist = np.array([np.sum((x_origin - row) ** 2)
-		                 for row in X])
-	k = np.exp(-gamma * pair_dist)
-	return k.dot(alphas / lambdas)
-X_reproject = project_x(X_origin, X, gamma = 15, alphas = alphas, lambdas = lambdas)
-
-print('Sample Example %s project to %s (Use API to calculate remap value: %s)' 
-	  % (X_origin, X_project, X_reproject))
-
-# Visualize the remapping process
-plt.scatter(alphas[y == 0, 0], np.zeros((50)), color = 'red', marker = '^', alpha = 0.5)
-plt.scatter(alphas[y == 1, 0], np.zeros((50)), color = 'blue', marker = 'o', alpha = 0.5)
-plt.scatter(X_project, 0, color = 'black', 
-	        label = 'original projection of point X[25]', 
-	        marker = '^', s = 100)
-plt.scatter(X_reproject, 0, color = 'green', 
-	        label = 'remap point X[25]', 
-	        marker = 'x', s = 500)
-plt.legend(scatterpoints = 1)
-plt.show()
-
