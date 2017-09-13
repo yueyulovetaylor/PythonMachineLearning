@@ -3,6 +3,7 @@ import numpy as np
 from sklearn.cross_validation import train_test_split
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import LabelEncoder
 
 def readDataFromIris():
 	# Use pandas library to import all data into a framework and 
@@ -59,3 +60,19 @@ def readDataFromWine():
 			'X_train_norm': X_train_norm, 'X_test_norm': X_test_norm,
 			'X_train_std': X_train_std, 'X_test_std': X_test_std,
 			'columns': df_wine.columns}
+
+def readDataFromWDBC():
+	df_WDBC = pd.read_csv('../Utilities/wdbc.data', header = None)
+	X = df_WDBC.loc[:, 2:].values
+	y = df_WDBC.loc[:, 1].values
+	le = LabelEncoder()
+	y = le.fit_transform(y)
+
+	print('After transform data [M, B] becomes %s' % le.transform(['M', 'B']))
+
+	# Split the dataset into train and test with test accounts for 20%
+	X_train, X_test, y_train, y_test = \
+		train_test_split(X, y, test_size = 0.2, random_state = 0)
+
+	return {'X_train': X_train, 'y_train': y_train,
+			'X_test': X_test, 'y_test':y_test}
