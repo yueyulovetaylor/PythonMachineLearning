@@ -59,7 +59,8 @@ def readDataFromWine():
 			'X_test': X_test, 'y_test':y_test,
 			'X_train_norm': X_train_norm, 'X_test_norm': X_test_norm,
 			'X_train_std': X_train_std, 'X_test_std': X_test_std,
-			'columns': df_wine.columns}
+			'columns': df_wine.columns,
+			'df_wine': df_wine}
 
 def readDataFromWDBC():
 	df_WDBC = pd.read_csv('../Utilities/wdbc.data', header = None)
