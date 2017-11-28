@@ -1,4 +1,4 @@
-# Implementation of K Means Clustering
+# Implementation of K Means Clustering and Elbow Method
 from sklearn.datasets import make_blobs
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
@@ -61,3 +61,21 @@ plt.scatter(km.cluster_centers_[:, 0],
 plt.legend()
 plt.grid()
 plt.show()
+
+print('\n3. Elbow Method to identify the optimal number of clusters')
+distortions = []
+for i in range(1, 11):
+	km = KMeans(n_clusters = i,
+				init = "k-means++",
+				n_init = 10,
+				max_iter = 300,
+				random_state = 0)
+	km.fit(X)
+	distortions.append(km.inertia_)
+print('Distortions Array: ')
+print(distortions)
+plt.plot(range(1, 11), distortions, marker = 'o')
+plt.xlabel('Number of Clusters')
+plt.ylabel('Distortions')
+plt.show()
+print('Conclusion: Best number of clusters is 3.')
