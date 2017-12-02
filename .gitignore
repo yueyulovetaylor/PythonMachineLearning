@@ -10,3 +10,5 @@ WebApplication/ImdbWebApp/pkl_objects/
 WebApplication/ImdbWebApp/review.sqlite
 WebApplication/SQLiteSetup/review.sqlite
 WebApplication/movieclassifier/pkl_objects/
+ArtificialNeuralNetwork/*-ubyte
+ArtificialNeuralNetwork/*.csv
