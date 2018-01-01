@@ -51,3 +51,27 @@ Not only did we learn how to encode a document as a feature vector using the **b
 ## Embedding a Machine Learning Model into a Web Application
 
 We learned how to serialize a model after training and how to load it for later use cases. Furthermore, we created a **SQLite database** for efficient data storage and created a **web application** that lets us make our movie classifier available to the outside world.
+
+## Predict Continuous Target Variable with Regression Analysis
+
+We built our first model by implementing linear regression using a **gradient-based optimization approach**. We then saw how to utilize scikit-learn's linear models for regression and also implement a **robust regression technique (RANSAC)** as an approach for dealing with outliers. To assess the predictive performance of regression models, we computed the mean sum of squared errors and the related R2 metric. Furthermore, we also discussed a useful graphical approach to diagnose the problems of regression models: the **residual plot**.
+
+## Working with Unlabeled Data -- Cluster Analysis
+
+In this chapter, you learned about three different clustering algorithms that can help us with the discovery of hidden structures or information in data. 
+
+We started this chapter with a prototype-based approach, **k-means**, which clusters samples into spherical shapes based on a speci ed number of cluster centroids.
+
+We then looked at a different approach to clustering: **agglomerative
+hierarchical clustering**. Hierarchical clustering does not require specifying
+the number of clusters upfront, and the result can be visualized in a dendrogram representation, which can help with the interpretation of the results. 
+
+The last clustering algorithm that we saw in this chapter was **DBSCAN**, an algorithm that groups points based on local densities and is capable of handling outliers and identifying nonglobular shapes.
+
+## Training Artificial Neural Network for Image Recognition
+
+We learned about the most important concepts behind **multi-layer artificial neural networks**.
+
+## Parallelizing Neural Network Training with Theano
+
+This chapter covers a small demo of Theano and some most commonly used activation functions.
